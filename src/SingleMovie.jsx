@@ -1,4 +1,4 @@
-import { Container } from "react-bootstrap";
+import { Container, Spinner } from "react-bootstrap";
 import { useParams } from "react-router-dom";
 import useFetch from "./useFetch";
 
@@ -7,7 +7,9 @@ const SingleMovie = () => {
     const {isLoading, error, data} = useFetch(false, id, 0);
 
     if(isLoading) {
-        return <h1>Loading...</h1>
+        return <Container>
+            <Spinner animation="grow" /><Spinner animation="grow" />
+        </Container>
     }
     if(error.show) {
         return <h1>Error...</h1>

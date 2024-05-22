@@ -9,9 +9,18 @@ const AppProvider = ({children}) => {
 
     const {isLoading, error, data} = useFetch(true ,`query=${query}&page=${page}`);
 
+    function goToNextPage () {
+        if (data.total_pages > page) setPage(page + 1);
+        else return;
+    }
+    function goToPrevPage () {
+        if (page > 1) setPage(page - 1);
+        else return;
+    }
+
     return (
         <AppContext.Provider value={{
-            query, setQuery, page, setPage, isLoading, error, data
+            query, setQuery, isLoading, error, data, goToNextPage, goToPrevPage, setPage, page
         }}>
             {children}
         </AppContext.Provider>
